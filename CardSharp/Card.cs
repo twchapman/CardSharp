@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace CardSharp {
     public static class Card {
+        public static Card<T> Make<T>(T dataModel) => Make(new[] { dataModel }).First();
         public static Card<T>[] Make<T>(params T[] dataModels) => dataModels.Select(data => new Card<T>(data)).ToArray();
     }
 
@@ -21,11 +22,19 @@ namespace CardSharp {
         }
 
         public override bool Equals(object obj) {
-            if ((obj == null) || !GetType().Equals(obj.GetType())) {
-                return false;
+            if (obj == null) return false;
+            var isArrayOfThis = typeof(Card<T>[]).Equals(obj.GetType());
+            if (!GetType().Equals(obj.GetType()) && !isArrayOfThis) return false;
+
+            Card<T> card;
+            if (isArrayOfThis) {
+                var array = obj as Card<T>[];
+                if (array.Length != 1) return false;
+                card = array.First();
+            } else {
+                card = obj as Card<T>;
             }
 
-            var card = obj as Card<T>;
             return card.Data.Equals(Data);
         }
 
