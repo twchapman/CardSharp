@@ -56,5 +56,25 @@ namespace CardSharp.Tests {
 
             CollectionAssert.AreEqual(new[] { 1, 2 }, deck.Draw(3).ToList());
         }
+
+        [TestMethod]
+        public void PutOnBottom_SingleCard_CardPutOnBottomOfDeck() {
+            var deck = new Deck<int>(new[] { 1, 2, 3 });
+
+            var topCard = deck.Draw();
+            deck.PutOnBottom(topCard);
+
+            CollectionAssert.AreEqual(new[] { 2, 3, 1 }, deck);
+        }
+
+        [TestMethod]
+        public void PutOnBottom_ThreeCards_CardsPutOnBottomOfDeck() {
+            var deck = new Deck<int>(new[] { 1, 2, 3, 4 });
+
+            var topThree = deck.Draw(3);
+            deck.PutOnBottom(topThree);
+
+            CollectionAssert.AreEqual(new[] { 4, 1, 2, 3 }, deck);
+        }
     }
 }

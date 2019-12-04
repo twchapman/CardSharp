@@ -21,5 +21,19 @@ namespace CardSharp {
             RemoveRange(0, count);
             return items;
         }
+
+        public void PutOnBottom(T card) {
+            PutOnBottom(new[] { card });
+        }
+
+        public void PutOnBottom(IEnumerable<T> cards) {
+            AddRange(cards);
+        }
+
+        private T Pull(int index = 0) {
+            var item = this[index];
+            RemoveAt(index);
+            return item;
+        }
     }
 }
