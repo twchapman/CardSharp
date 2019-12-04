@@ -59,22 +59,38 @@ namespace CardSharp.Tests {
 
         [TestMethod]
         public void PutOnBottom_SingleCard_CardPutOnBottomOfDeck() {
-            var deck = new Deck<int>(new[] { 1, 2, 3 });
+            var deck = new Deck<int>(new[] { 1, 2 });
 
-            var topCard = deck.Draw();
-            deck.PutOnBottom(topCard);
+            deck.PutOnBottom(3);
 
-            CollectionAssert.AreEqual(new[] { 2, 3, 1 }, deck);
+            CollectionAssert.AreEqual(new[] { 1, 2, 3 }, deck);
         }
 
         [TestMethod]
         public void PutOnBottom_ThreeCards_CardsPutOnBottomOfDeck() {
-            var deck = new Deck<int>(new[] { 1, 2, 3, 4 });
+            var deck = new Deck<int>(new[] { 1 });
 
-            var topThree = deck.Draw(3);
-            deck.PutOnBottom(topThree);
+            deck.PutOnBottom(new[] { 2, 3, 4 } );
 
-            CollectionAssert.AreEqual(new[] { 4, 1, 2, 3 }, deck);
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4 }, deck);
+        }
+
+        [TestMethod]
+        public void PutOnTop_SingleCard_CardPutOnTopOfDeck() {
+            var deck = new Deck<int>(new[] { 2, 3 });
+
+            deck.PutOnTop(1);
+
+            CollectionAssert.AreEqual(new[] { 1, 2, 3 }, deck);
+        }
+
+        [TestMethod]
+        public void PutOnTop_ThreeCards_CardsPutOnTopOfDeck() {
+            var deck = new Deck<int>(new[] { 4 });
+
+            deck.PutOnTop(new[] { 1, 2, 3 });
+
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4 }, deck);
         }
     }
 }

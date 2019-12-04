@@ -30,6 +30,14 @@ namespace CardSharp {
             AddRange(cards);
         }
 
+        public void PutOnTop(T card) {
+            PutOnTop(new[] { card });
+        }
+
+        public void PutOnTop(IEnumerable<T> cards) {
+            InsertRange(0, cards);
+        }
+
         private T Pull(int index = 0) {
             var item = this[index];
             RemoveAt(index);
