@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace CardSharp {
-    public class Deck<T> : List<T>, IDeck<T> {
+    public class Deck<T> : List<Card<T>>, IDeck<T> {
         public Deck() : base() { }
-        public Deck(IEnumerable<T> cards) : base(cards) { }
+        public Deck(IEnumerable<Card<T>> cards) : base(cards) { }
 
         public bool Empty => Count == 0;
 
-        public T Draw() {
-            return Draw(1).First();
-        }
-
-        public IEnumerable<T> Draw(int count) {
+        public IEnumerable<Card<T>> Draw(int count = 1) {
             if (Empty) throw new DeckEmptyException();
 
             count = Math.Min(count, Count);
@@ -22,26 +18,16 @@ namespace CardSharp {
             return items;
         }
 
-        public void PutOnBottom(T card) {
-            PutOnBottom(new[] { card });
-        }
-
-        public void PutOnBottom(IEnumerable<T> cards) {
+        public void PutOnBottom(IEnumerable<Card<T>> cards) {
             AddRange(cards);
         }
 
-        public void PutOnTop(T card) {
-            PutOnTop(new[] { card });
-        }
-
-        public void PutOnTop(IEnumerable<T> cards) {
+        public void PutOnTop(IEnumerable<Card<T>> cards) {
             InsertRange(0, cards);
         }
 
-        private T Pull(int index = 0) {
-            var item = this[index];
-            RemoveAt(index);
-            return item;
-        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => ToArray().Select(card => card.Data).GetEnumerator();
+        internal void Add(T data) => Add(new Card<T>(data));
+
     }
 }

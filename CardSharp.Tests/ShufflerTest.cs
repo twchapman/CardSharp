@@ -8,7 +8,7 @@ namespace CardSharp.Tests {
         public void FisherYates_GivenKnownSequence_ShufflesIntoSequence() {
             // This test really just exercises the algorithm
             var randomizer = new FakeRandomizer(2, 0);
-            var deck = new Deck<int>(new[] { 3, 2, 1 });
+            var deck = new Deck<int>(new Card<int>[] { 3, 2, 1 });
             var shuffler = new Shuffler(randomizer);
 
             shuffler.FisherYates(deck);
@@ -22,7 +22,7 @@ namespace CardSharp.Tests {
             var random = new Random(seed);
             var randomizer = new DotNetRandomizer(seed);
 
-            var deck = new Deck<int>(new[] { 1, 2, 3 });
+            var deck = new Deck<int>(new Card<int>[] { 1, 2, 3 });
             var shuffler = new Shuffler(randomizer);
 
             var expectedDeck = new Deck<int>(deck);
