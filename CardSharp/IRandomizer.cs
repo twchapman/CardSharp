@@ -1,5 +1,5 @@
 ﻿namespace CardSharp {
     public interface IRandomizer<T> {
-        T Next();
+        T Next(int max);
     }
 }

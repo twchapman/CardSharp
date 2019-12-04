@@ -10,15 +10,15 @@ namespace CardSharp.Tests {
         public void GetNext_GivenSingleNumber_ReturnsNumber() {
             var randomizer = new FakeRandomizer(1);
 
-            Assert.AreEqual(1, randomizer.Next());
-            Assert.AreEqual(1, randomizer.Next());
+            Assert.AreEqual(1, randomizer.Next(0));
+            Assert.AreEqual(1, randomizer.Next(0));
         }
 
         [TestMethod]
         public void GetNext_GivenSequence_ReturnsSequenceInOrder() {
             var randomizer = new FakeRandomizer(1, 2, 3, 4);
 
-            var sequence = new[] { randomizer.Next(), randomizer.Next(), randomizer.Next(), randomizer.Next() };
+            var sequence = new[] { randomizer.Next(0), randomizer.Next(0), randomizer.Next(0), randomizer.Next(0) };
             CollectionAssert.AreEqual(new[] { 1, 2, 3, 4 }, sequence);
         }
     }

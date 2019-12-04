@@ -48,6 +48,7 @@
     <Compile Include="IDeck.cs" />
     <Compile Include="IRandomizer.cs" />
     <Compile Include="ListExtensions.cs" />
+    <Compile Include="NetRandomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shuffler.cs" />
   </ItemGroup>

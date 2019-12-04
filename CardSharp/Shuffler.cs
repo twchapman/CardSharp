@@ -10,9 +10,9 @@ namespace CardSharp {
 
         public Deck<T> FisherYates<T>(Deck<T> deck) {
             Deck<T> shuffledDeck = new Deck<T>(deck);
-            for (int i = deck.Count - 1; i > 1;  i--) {
-                int swapIndex = randomizer.Next();
-                shuffledDeck.Swap(i, swapIndex);
+            for (int current = 0; current < deck.Count - 1; current++) {
+                int swapTo = current + randomizer.Next(deck.Count - current);
+                shuffledDeck.Swap(current, swapTo);
             }
             return shuffledDeck;
         }

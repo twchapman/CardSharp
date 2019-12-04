@@ -18,7 +18,7 @@ namespace CardSharp {
             this.sequence = sequence;
         }
 
-        public int Next() {
+        public int Next(int max) {
             int value = sequence[currentIndex];
             currentIndex++;
             return value;
