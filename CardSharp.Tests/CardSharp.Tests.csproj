@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardTests.cs" />
     <Compile Include="DeckTests.cs" />
     <Compile Include="FakeRandomizerTest.cs" />
     <Compile Include="ListExtensionsTest.cs" />
