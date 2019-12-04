@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace CardSharp {
-    public class Card<T> : IEnumerable<Card<T>> {
+    public static class Card {
+        public static Card<T>[] Make<T>(params T[] dataModels) => dataModels.Select(data => new Card<T>(data)).ToArray();
+    }
+
+    public class Card<T> {
         public Card() { }
         public Card(T data) {
             Data = data;
@@ -16,13 +20,22 @@ namespace CardSharp {
             yield return this;
         }
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return GetEnumerator();
+        public override bool Equals(object obj) {
+            if ((obj == null) || !GetType().Equals(obj.GetType())) {
+                return false;
+            }
+
+            var card = obj as Card<T>;
+            return card.Data.Equals(Data);
         }
 
-        public static implicit operator List<Card<T>>(Card<T> card) => new List<Card<T>> { card };
-        public static implicit operator Card<T>(List<Card<T>> cards) {
-            if (cards.Count != 1) throw new InvalidCastException($"Can only cast a List of 1 cards to a Single card, found {cards.Count} instead.");
+        public override int GetHashCode() {
+            return base.GetHashCode() ^ Data.GetHashCode();
+        }
+
+        public static implicit operator Card<T>[](Card<T> card) => new[] { card };
+        public static implicit operator Card<T>(Card<T>[] cards) {
+            if (cards.Length != 1) throw new InvalidCastException($"Can only cast a List of 1 cards to a Single card, found {cards.Length} instead.");
             return cards.First();
         }
 

@@ -7,9 +7,9 @@ namespace CardSharp.Tests {
     public class DeckTests {
         [TestMethod]
         public void Draw_NoCountGiven_DrawsOneCard() {
-            var deck = new Deck<int> { 1, 2, 3 };
+            var deck = new Deck<int>(Card.Make(new[] { 1, 2, 3 }));
 
-            Assert.AreEqual(1, deck.Draw());
+            Assert.AreEqual<Card<int>>(Card.Make(1), deck.Draw());
         }
 
         [TestMethod]

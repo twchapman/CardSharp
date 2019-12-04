@@ -13,7 +13,8 @@ namespace CardSharp.Tests {
 
             shuffler.FisherYates(deck);
 
-            CollectionAssert.AreEqual(new[] { 1, 2, 3 }, deck);
+            var expected = new Deck<int>(new Card<int>[] { 1, 2, 3 });
+            CollectionAssert.AreEqual(expected, deck);
         }
         
         [TestMethod]
@@ -22,10 +23,10 @@ namespace CardSharp.Tests {
             var random = new Random(seed);
             var randomizer = new DotNetRandomizer(seed);
 
-            var deck = new Deck<int>(new Card<int>[] { 1, 2, 3 });
+            var deck = new Deck<int>(Card.Make(1, 2, 3 ));
             var shuffler = new Shuffler(randomizer);
 
-            var expectedDeck = new Deck<int>(deck);
+            var expectedDeck = deck.Clone();
             expectedDeck.Swap(0, random.Next(3));
             expectedDeck.Swap(1, 1 + random.Next(2));
 

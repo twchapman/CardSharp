@@ -5,24 +5,29 @@ using System.Linq;
 namespace CardSharp {
     public class Deck<T> : List<Card<T>>, IDeck<T> {
         public Deck() : base() { }
-        public Deck(IEnumerable<Card<T>> cards) : base(cards) { }
+        public Deck(Card<T>[] cards) : base(cards) { }
+        public Deck<T> Clone() {
+            var cardData = ToArray().Select(card => card.Data).ToArray();
+            var clonedCards = Card.Make(cardData);
+            return new Deck<T>(clonedCards);
+        }
 
         public bool Empty => Count == 0;
 
-        public IEnumerable<Card<T>> Draw(int count = 1) {
+        public Card<T>[] Draw(int count = 1) {
             if (Empty) throw new DeckEmptyException();
 
             count = Math.Min(count, Count);
             var items = GetRange(0, count);
             RemoveRange(0, count);
-            return items;
+            return items.ToArray();
         }
 
-        public void PutOnBottom(IEnumerable<Card<T>> cards) {
+        public void PutOnBottom(Card<T>[] cards) {
             AddRange(cards);
         }
 
-        public void PutOnTop(IEnumerable<Card<T>> cards) {
+        public void PutOnTop(Card<T>[] cards) {
             InsertRange(0, cards);
         }
 

@@ -46,6 +46,7 @@
     <Compile Include="Deck.cs" />
     <Compile Include="DeckEmptyException.cs" />
     <Compile Include="FakeRandomizer.cs" />
+    <Compile Include="ICard.cs" />
     <Compile Include="IDeck.cs" />
     <Compile Include="IRandomizer.cs" />
     <Compile Include="ListExtensions.cs" />
