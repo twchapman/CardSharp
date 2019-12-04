@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CardSharp {
+﻿namespace CardSharp {
     public class Shuffler {
         private readonly IRandomizer<int> randomizer;
 

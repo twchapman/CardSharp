@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CardSharp {
+﻿namespace CardSharp {
     internal class FakeRandomizer : IRandomizer<int> {
         private readonly int[] sequence;
         private int _currentIndex;
