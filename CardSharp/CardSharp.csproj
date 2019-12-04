@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardSharpException.cs" />
+    <Compile Include="Deck.cs" />
+    <Compile Include="DeckEmptyException.cs" />
     <Compile Include="FakeRandomizer.cs" />
+    <Compile Include="IDeck.cs" />
     <Compile Include="IRandomizer.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
