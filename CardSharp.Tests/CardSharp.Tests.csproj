@@ -52,6 +52,7 @@
     <Compile Include="DeckTests.cs" />
     <Compile Include="FakeRandomizerTest.cs" />
     <Compile Include="ListExtensionsTest.cs" />
+    <Compile Include="ShufflerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
