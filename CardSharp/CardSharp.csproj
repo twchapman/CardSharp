@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardSharpException.cs" />
+    <Compile Include="FakeRandomizer.cs" />
+    <Compile Include="IRandomizer.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
