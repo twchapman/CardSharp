@@ -8,13 +8,11 @@ namespace CardSharp {
             this.randomizer = randomizer;
         }
 
-        public Deck<T> FisherYates<T>(Deck<T> deck) {
-            Deck<T> shuffledDeck = new Deck<T>(deck);
+        public void FisherYates<T>(Deck<T> deck) {
             for (int current = 0; current < deck.Count - 1; current++) {
                 int swapTo = current + randomizer.Next(deck.Count - current);
-                shuffledDeck.Swap(current, swapTo);
+                deck.Swap(current, swapTo);
             }
-            return shuffledDeck;
         }
     }
 }

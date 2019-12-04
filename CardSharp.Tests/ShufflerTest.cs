@@ -11,9 +11,9 @@ namespace CardSharp.Tests {
             var deck = new Deck<int>(new[] { 3, 2, 1 });
             var shuffler = new Shuffler(randomizer);
 
-            var shuffledDeck = shuffler.FisherYates(deck);
+            shuffler.FisherYates(deck);
 
-            CollectionAssert.AreEqual(new[] { 1, 2, 3 }, shuffledDeck);
+            CollectionAssert.AreEqual(new[] { 1, 2, 3 }, deck);
         }
         
         [TestMethod]
@@ -29,9 +29,9 @@ namespace CardSharp.Tests {
             expectedDeck.Swap(0, random.Next(3));
             expectedDeck.Swap(1, 1 + random.Next(2));
 
-            var shuffledDeck = shuffler.FisherYates(deck);
+            shuffler.FisherYates(deck);
 
-            CollectionAssert.AreEqual(expectedDeck, shuffledDeck);
+            CollectionAssert.AreEqual(expectedDeck, deck);
         }
     }
 }
